@@ -8,6 +8,7 @@
     "start": "ui5 serve"
   },
   "devDependencies": {
+    "@sapui5/ts-types": "^1.144.1",
     "@ui5/cli": "^4"
   }
 }

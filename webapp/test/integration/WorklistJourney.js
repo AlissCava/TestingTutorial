@@ -1,9 +1,8 @@
-/*global QUnit*/
-
 sap.ui.define([
-	"sap/ui/test/opaQunit",
-	"./pages/Worklist"
-], function (opaTest) {
+	'sap/ui/test/opaQunit',
+	'sap/ui/test/Qunit',
+	'./pages/Worklist'
+], function (opaTest, QUnit, Worklist) {
 	"use strict";
 
 	QUnit.module("Posts");
@@ -13,11 +12,18 @@ sap.ui.define([
 		Given.iStartMyApp();
 
 		// Assertions
-		Then.onTheWorklistPage.theTableShouldHaveAllEntries().
+		Then.onTheWorklistPage.theTableShouldHavePagination().
 			and.theTitleShouldDisplayTheTotalAmountOfItems();
+	});
+
+	opaTest("Should be able to load more items", function (Given, When, Then) {
+		//Actions
+		When.onTheWorklistPage.iPressOnMoreData();
+
+		// Assertions
+		Then.onTheWorklistPage.theTableShouldHaveAllEntries();
 
 		// Cleanup
 		Then.iTeardownMyApp();
 	});
-
 });
