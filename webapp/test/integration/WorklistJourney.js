@@ -1,8 +1,9 @@
+/*global QUnit*/
+
 sap.ui.define([
-	'sap/ui/test/opaQunit',
-	'sap/ui/test/Qunit',
-	'./pages/Worklist'
-], function (opaTest, QUnit, Worklist) {
+	"sap/ui/test/opaQunit",
+	"./pages/Worklist"
+], function (opaTest) {
 	"use strict";
 
 	QUnit.module("Posts");
@@ -22,6 +23,14 @@ sap.ui.define([
 
 		// Assertions
 		Then.onTheWorklistPage.theTableShouldHaveAllEntries();
+	});
+
+	opaTest("Should be able to search for items", function (Given, When, Then) {
+		//Actions
+		When.onTheWorklistPage.iSearchFor("Bear");
+
+		// Assertions
+		Then.onTheWorklistPage.theTableHasOneItem();
 
 		// Cleanup
 		Then.iTeardownMyApp();
